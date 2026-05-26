@@ -62,44 +62,38 @@
     <!-- Top Header -->
     <div class="sm:flex sm:items-center sm:justify-between no-print">
         <div>
-            <h1 class="text-xl md:text-2xl font-bold text-slate-900">Laporan & Analisis Statistik</h1>
-            <p class="text-xs md:text-sm text-slate-500">Ringkasan matrik seleksi pendaftar magang mahasiswa dan analisis data kuota lowongan.</p>
+            <h1 class="text-xl md:text-2xl font-bold text-slate-900">Laporan & Analisis</h1>
+            <p class="text-xs md:text-sm text-slate-500">Ringkasan seleksi pendaftar magang mahasiswa dan analisis data kuota lowongan.</p>
         </div>
         <div class="mt-4 sm:mt-0">
-            <button onclick="window.print()" class="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-lg transition-colors shadow-sm">
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-                </svg>
-                Cetak Laporan (PDF)
-            </button>
         </div>
     </div>
 
     <!-- Summary Stats Widgets -->
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <!-- Card 1 -->
-        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm card">
+        <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm card card-info">
             <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Total Pendaftar</p>
             <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mt-1">{{ $stats['total_pendaftar'] }}</h3>
             <p class="text-[10px] text-slate-400 mt-1">mahasiswa terdaftar</p>
         </div>
 
         <!-- Card 2 -->
-        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm card">
+        <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm card card-success">
             <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Disetujui (Approved)</p>
             <h3 class="text-2xl md:text-3xl font-bold text-emerald-700 mt-1">{{ $stats['approved'] }}</h3>
             <p class="text-[10px] text-slate-400 mt-1">lolos seleksi administratif</p>
         </div>
 
         <!-- Card 3 -->
-        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm card">
+        <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm card card-danger">
             <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Ditolak (Rejected)</p>
             <h3 class="text-2xl md:text-3xl font-bold text-rose-700 mt-1">{{ $stats['rejected'] }}</h3>
             <p class="text-[10px] text-slate-400 mt-1">tidak memenuhi kriteria</p>
         </div>
 
         <!-- Card 4 -->
-        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm card">
+        <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm card card-warning">
             <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Menunggu (Pending)</p>
             <h3 class="text-2xl md:text-3xl font-bold text-amber-700 mt-1">{{ $stats['pending'] }}</h3>
             <p class="text-[10px] text-slate-400 mt-1">belum ditinjau</p>
@@ -109,7 +103,7 @@
     <!-- Charts and Breakdowns -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <!-- University Origin Stats -->
-        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col justify-between card">
+        <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm flex flex-col justify-between card card-primary">
             <div class="space-y-1">
                 <h3 class="text-sm font-bold text-slate-900">Distribusi Universitas</h3>
                 <p class="text-xs text-slate-500">Asal universitas pelamar terbanyak.</p>
@@ -141,7 +135,7 @@
         </div>
 
         <!-- Vacancies Analysis Breakdown -->
-        <div class="lg:col-span-2 bg-white border border-slate-200 rounded-xl p-6 shadow-sm card">
+        <div class="lg:col-span-2 bg-white border border-slate-200 rounded-lg p-6 shadow-sm card card-primary">
             <div class="space-y-1">
                 <h3 class="text-sm font-bold text-slate-900">Analisis Keterisian Kuota</h3>
                 <p class="text-xs text-slate-500">Persentase penerimaan pelamar terhadap kuota awal lowongan.</p>
@@ -168,8 +162,82 @@
         </div>
     </div>
 
+    <!-- Department and Status Summary Reports -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Summary Pendaftar per Departemen -->
+        <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm card card-primary">
+            <div class="space-y-1 mb-4">
+                <h3 class="text-sm font-bold text-slate-900">Ringkasan Pendaftar per Departemen</h3>
+                <p class="text-xs text-slate-500">Jumlah akumulasi pelamar berdasarkan departemen.</p>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead>
+                        <tr class="border-b border-slate-200 bg-slate-50 text-slate-700">
+                            <th class="p-3 font-bold">Nama Departemen</th>
+                            <th class="p-3 font-bold text-right">Jumlah Pendaftar</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200">
+                        @foreach($departmentStats as $deptStat)
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-3 font-medium text-slate-800">{{ $deptStat->department_name }}</td>
+                                <td class="p-3 text-right font-bold text-slate-900">{{ $deptStat->total_pendaftar }} orang</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Summary Status Pendaftaran -->
+        <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm card card-primary">
+            <div class="space-y-1 mb-4">
+                <h3 class="text-sm font-bold text-slate-900">Ringkasan Status Seleksi</h3>
+                <p class="text-xs text-slate-500">Jumlah akumulasi pelamar berdasarkan status keputusan.</p>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead>
+                        <tr class="border-b border-slate-200 bg-slate-50 text-slate-700">
+                            <th class="p-3 font-bold">Status Keputusan</th>
+                            <th class="p-3 font-bold text-right">Jumlah Pelamar</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200">
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="p-3 font-medium text-slate-800 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                                Menunggu Review (Pending)
+                            </td>
+                            <td class="p-3 text-right font-bold text-amber-700">{{ $stats['pending'] }} orang</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="p-3 font-medium text-slate-800 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                Disetujui (Approved)
+                            </td>
+                            <td class="p-3 text-right font-bold text-emerald-700">{{ $stats['approved'] }} orang</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="p-3 font-medium text-slate-800 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+                                Ditolak (Rejected)
+                            </td>
+                            <td class="p-3 text-right font-bold text-rose-700">{{ $stats['rejected'] }} orang</td>
+                        </tr>
+                        <tr class="border-t border-slate-200 font-bold bg-slate-50 text-slate-900">
+                            <td class="p-3">Total Akumulasi</td>
+                            <td class="p-3 text-right">{{ $stats['total_pendaftar'] }} orang</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
     <!-- Filters Section -->
-    <div id="filter-section" class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm no-print">
+    <div id="filter-section" class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm no-print card-primary">
         <form action="{{ route('admin.laporan.index') }}" method="GET" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <!-- Filter Status -->
             <div class="space-y-1">
@@ -206,7 +274,7 @@
     </div>
 
     <!-- Applicants Details Report -->
-    <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm table-card">
+    <div class="bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm table-card card-primary">
         <div class="p-5 border-b border-slate-200 flex justify-between items-center no-print bg-slate-50">
             <h3 class="text-sm font-bold text-slate-900">Detail Laporan Data Pelamar</h3>
             <span class="text-xs text-slate-500 font-semibold">Total pelamar disaring: {{ $pendaftars->count() }} orang</span>

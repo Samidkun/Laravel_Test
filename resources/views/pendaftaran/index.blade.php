@@ -5,7 +5,7 @@
 @section('content')
 <div class="space-y-8">
     <!-- Hero Banner -->
-    <div class="bg-white border border-slate-200 rounded-xl p-8 md:p-10 shadow-sm">
+    <div class="bg-white border border-slate-200 rounded-lg p-8 md:p-10 shadow-sm card-primary">
         <div class="max-w-3xl space-y-4">
             <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-xs font-semibold bg-blue-50 text-blue-800 border border-blue-200">
                 Program Magang Mahasiswa 2026
@@ -49,7 +49,7 @@
         @else
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($lowongans as $lowongan)
-                    <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col justify-between hover:border-blue-300 hover:shadow-md transition-all">
+                    <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm flex flex-col justify-between hover:border-blue-500 hover:shadow-md transition-all card-info">
                         <div class="space-y-4">
                             <!-- Header card -->
                             <div class="flex items-start justify-between gap-4">

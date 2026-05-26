@@ -41,7 +41,7 @@
             </div>
         @else
             @foreach($pendaftars as $applicant)
-                <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-6">
+                <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm space-y-6 {{ $applicant->status === 'Approved' ? 'card-success' : ($applicant->status === 'Rejected' ? 'card-danger' : 'card-warning') }}">
                     <!-- Top Summary -->
                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-100 pb-4">
                         <div class="space-y-1">

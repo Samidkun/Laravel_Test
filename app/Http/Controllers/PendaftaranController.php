@@ -15,6 +15,10 @@ class PendaftaranController extends Controller
      */
     public function publicIndex()
     {
+        if (Auth::check() && Auth::user()->role === 'admin') {
+            return redirect()->route('admin.lowongan.index');
+        }
+
         // Fetch vacancies with departments
         $lowongans = MasterLowongan::with('departement')->get();
         return view('pendaftaran.index', compact('lowongans'));
@@ -25,6 +29,10 @@ class PendaftaranController extends Controller
      */
     public function create($lowonganId = null)
     {
+        if (Auth::user()->role === 'admin') {
+            return redirect()->route('admin.lowongan.index')->with('error', 'Halaman ini hanya dapat diakses oleh pelamar.');
+        }
+
         $lowongans = MasterLowongan::all();
         $selectedLowongan = null;
         if ($lowonganId) {
@@ -38,6 +46,10 @@ class PendaftaranController extends Controller
      */
     public function store(Request $request)
     {
+        if (Auth::user()->role === 'admin') {
+            return redirect()->route('admin.lowongan.index')->with('error', 'Halaman ini hanya dapat diakses oleh pelamar.');
+        }
+
         $request->validate([
             'id_lowongan' => 'required|exists:master_lowongans,id',
             'name' => 'required|string|max:255',
@@ -94,6 +106,9 @@ class PendaftaranController extends Controller
      */
     public function myApplications()
     {
+        if (Auth::user()->role === 'admin') {
+            return redirect()->route('admin.lowongan.index')->with('error', 'Halaman ini hanya dapat diakses oleh pelamar.');
+        }
         $pendaftars = TransaksiPendaftar::with('lowongan.departement')
             ->where('user_id', Auth::id())
             ->orderBy('created_at', 'desc')

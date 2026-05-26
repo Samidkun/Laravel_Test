@@ -8,14 +8,17 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:300,400,400i,600,700&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS (via Vite) -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .card-primary {
+            border-top: 3px solid #007bff;
         }
     </style>
 </head>
@@ -23,16 +26,13 @@
 
     <div class="w-full max-w-md space-y-6">
         <!-- Logo Header -->
-        <div class="text-center space-y-2">
-            <div class="inline-flex w-10 h-10 rounded-lg bg-blue-600 items-center justify-center text-white font-extrabold text-xl shadow-sm">
-                M
-            </div>
+        <div class="text-center space-y-1">
             <h2 class="text-xl font-bold text-slate-900">Portal Pendaftaran Magang</h2>
             <p class="text-xs text-slate-500">Silakan masuk menggunakan akun Anda untuk melanjutkan.</p>
         </div>
 
         <!-- Login Card -->
-        <div class="bg-white border border-slate-200 rounded-xl p-8 shadow-sm">
+        <div class="bg-white border border-slate-200 rounded-lg p-8 shadow-sm card-primary">
             
             <!-- Success Alert -->
             @if(session('success'))
@@ -83,8 +83,8 @@
         </div>
 
         <!-- Info / Credentials Help -->
-        <div class="p-4 bg-white border border-slate-200 rounded-xl text-center text-xs text-slate-500 space-y-2">
-            <span class="font-bold text-slate-700 block">Akun Pengujian Demo:</span>
+        <div class="p-4 bg-white border border-slate-200 rounded-lg text-center text-xs text-slate-500 space-y-2 card-primary">
+            <span class="font-bold text-slate-700 block">Akun Login Test:</span>
             <div class="flex justify-center gap-4 text-slate-650">
                 <div>
                     <span class="text-blue-600 font-semibold">Admin:</span> admin@test.com

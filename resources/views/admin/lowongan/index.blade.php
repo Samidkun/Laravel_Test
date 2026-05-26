@@ -21,7 +21,7 @@
     </div>
 
     <!-- Table Card -->
-    <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+    <div class="bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm card-primary">
         @if($lowongans->isEmpty())
             <div class="p-12 text-center flex flex-col items-center justify-center space-y-4">
                 <div class="w-12 h-12 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400">

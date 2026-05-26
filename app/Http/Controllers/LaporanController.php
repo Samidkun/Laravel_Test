@@ -39,6 +39,15 @@ class LaporanController extends Controller
             ->take(5)
             ->get();
 
+        // Applicants per department summary
+        $departmentStats = DB::table('master_departements')
+            ->leftJoin('master_lowongans', 'master_departements.id', '=', 'master_lowongans.dept_id')
+            ->leftJoin('transaksi_pendaftars', 'master_lowongans.id', '=', 'transaksi_pendaftars.id_lowongan')
+            ->select('master_departements.name as department_name', DB::raw('count(transaksi_pendaftars.id) as total_pendaftar'))
+            ->groupBy('master_departements.id', 'master_departements.name')
+            ->orderBy('total_pendaftar', 'desc')
+            ->get();
+
         // Applicants list for reporting
         $pendaftars = TransaksiPendaftar::with('lowongan.departement')
             ->when($request->status, function ($q, $status) {
@@ -52,6 +61,6 @@ class LaporanController extends Controller
 
         $allLowongans = MasterLowongan::all();
 
-        return view('admin.laporan.index', compact('stats', 'lowongansBreakdown', 'universityStats', 'pendaftars', 'allLowongans'));
+        return view('admin.laporan.index', compact('stats', 'lowongansBreakdown', 'universityStats', 'departmentStats', 'pendaftars', 'allLowongans'));
     }
 }

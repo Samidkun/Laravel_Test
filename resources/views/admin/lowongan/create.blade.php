@@ -11,7 +11,7 @@
     </div>
 
     <!-- Form Card -->
-    <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+    <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm card-primary">
         <form action="{{ route('admin.lowongan.store') }}" method="POST" class="space-y-5">
             @csrf
 

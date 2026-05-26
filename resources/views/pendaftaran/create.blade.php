@@ -11,7 +11,7 @@
     </div>
 
     <!-- Form card -->
-    <div class="bg-white border border-slate-200 rounded-xl p-6 md:p-8 shadow-sm">
+    <div class="bg-white border border-slate-200 rounded-lg p-6 md:p-8 shadow-sm card-primary">
         <form action="{{ route('pendaftaran.store') }}" method="POST" enctype="multipart/form-data" class="space-y-5">
             @csrf
 
@@ -122,10 +122,10 @@
             <div class="space-y-1">
                 <label for="cv" class="block text-xs font-semibold text-slate-700">Unggah berkas CV (PDF/DOC/DOCX, Maks 2MB) <span class="text-rose-500">*</span></label>
                 <div class="relative w-full flex flex-col items-center justify-center p-5 border border-slate-300 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors cursor-pointer">
-                    <svg class="w-7 h-7 text-slate-400 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <svg id="cv-icon" class="w-7 h-7 text-slate-400 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                     </svg>
-                    <span class="text-xs text-slate-500 font-medium">Klik atau tarik file dokumen Anda kemari</span>
+                    <span id="cv-label" class="text-xs text-slate-500 font-medium text-center">Klik atau tarik file dokumen Anda kemari</span>
                     <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
                 </div>
                 @error('cv')
@@ -145,4 +145,26 @@
         </form>
     </div>
 </div>
+
+<script>
+    document.getElementById('cv').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        const label = document.getElementById('cv-label');
+        const icon = document.getElementById('cv-icon');
+        
+        if (file) {
+            label.textContent = `File terpilih: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+            label.classList.remove('text-slate-500');
+            label.classList.add('text-blue-600', 'font-semibold');
+            icon.classList.remove('text-slate-400');
+            icon.classList.add('text-blue-500');
+        } else {
+            label.textContent = 'Klik atau tarik file dokumen Anda kemari';
+            label.classList.remove('text-blue-600', 'font-semibold');
+            label.classList.add('text-slate-500');
+            icon.classList.remove('text-blue-500');
+            icon.classList.add('text-slate-400');
+        }
+    });
+</script>
 @endsection
