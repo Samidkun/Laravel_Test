@@ -16,14 +16,14 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->foreignId('id_lowongan')->constrained('master_lowongans')->onDelete('cascade');
             $table->string('name');
-            $table->string('gender'); // e.g. Laki-laki, Perempuan
-            $table->date('dob'); // Date of Birth
-            $table->text('adres'); // Address
+            $table->string('gender'); // Laki-laki, Perempuan
+            $table->date('dob'); // Tanggal lahir
+            $table->text('adres'); // Alamat
             $table->string('no_telp');
             $table->string('university');
             $table->string('major');
-            $table->decimal('ipk', 3, 2); // E.g. 3.75
-            $table->string('status')->default('Pending'); // e.g. Pending, Approved, Rejected
+            $table->decimal('ipk', 3, 2); // IPK
+            $table->string('status')->default('Pending'); // status pendaftaran Pending, Approved, Rejected
             $table->string('path_cv')->nullable();
             $table->timestamps();
         });

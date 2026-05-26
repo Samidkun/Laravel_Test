@@ -7,15 +7,15 @@ use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\BookController;
 
-// Redirect home to the public job list (requires auth)
+// home
 Route::redirect('/', '/lowongan');
 
-// Authentication Routes
+// route autentikasi 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// Public/Guest Routes (Authorized Users - Guest or Admin)
+// guest/admin route authenticated
 Route::middleware(['auth'])->group(function () {
     Route::get('/lowongan', [PendaftaranController::class, 'publicIndex'])->name('pendaftaran.index');
     Route::get('/daftar', [PendaftaranController::class, 'create'])->name('pendaftaran.create');
@@ -24,7 +24,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/status-pendaftaran', [PendaftaranController::class, 'myApplications'])->name('pendaftaran.my_status');
 });
 
-// Admin Routes (Restricted to Admin role only)
+// route admin
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     // 
     Route::get('/lowongan', [MasterLowonganController::class, 'index'])->name('admin.lowongan.index');
@@ -34,10 +34,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::put('/lowongan/{id}/update', [MasterLowonganController::class, 'update'])->name('admin.lowongan.update');
     Route::delete('/lowongan/{id}/delete', [MasterLowonganController::class, 'destroy'])->name('admin.lowongan.destroy');
 
-    // Applicants Management
+    // manage daftar magang
     Route::get('/pendaftar', [PendaftaranController::class, 'adminIndex'])->name('admin.pendaftar.index');
     Route::patch('/pendaftar/{id}/status', [PendaftaranController::class, 'updateStatus'])->name('admin.pendaftar.status');
 
-    // Reports
+    // laporan
     Route::get('/laporan', [LaporanController::class, 'index'])->name('admin.laporan.index');
 });
