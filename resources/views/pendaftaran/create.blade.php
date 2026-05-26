@@ -7,7 +7,7 @@
     <!-- Header -->
     <div class="space-y-1">
         <h1 class="text-xl md:text-2xl font-bold text-slate-900">Formulir Pendaftaran Magang</h1>
-        <p class="text-xs md:text-sm text-slate-500">Isi data lengkap Anda untuk mendaftar seleksi program magang mahasiswa.</p>
+        <p class="text-xs md:text-sm text-slate-500">Isi data lengkap Anda untuk mendaftar seleksi program magang .</p>
     </div>
 
     <!-- Form card -->

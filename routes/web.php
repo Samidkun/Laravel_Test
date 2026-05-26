@@ -26,7 +26,7 @@ Route::middleware(['auth'])->group(function () {
 
 // Admin Routes (Restricted to Admin role only)
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-    // Vacancy CRUD
+    // 
     Route::get('/lowongan', [MasterLowonganController::class, 'index'])->name('admin.lowongan.index');
     Route::get('/lowongan/create', [MasterLowonganController::class, 'create'])->name('admin.lowongan.create');
     Route::post('/lowongan/store', [MasterLowonganController::class, 'store'])->name('admin.lowongan.store');
@@ -41,6 +41,3 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     // Reports
     Route::get('/laporan', [LaporanController::class, 'index'])->name('admin.laporan.index');
 });
-
-// Retain Book routes just in case
-Route::resource('books', BookController::class);

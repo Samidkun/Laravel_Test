@@ -8,7 +8,7 @@
     <div class="bg-white border border-slate-200 rounded-lg p-8 md:p-10 shadow-sm card-primary">
         <div class="max-w-3xl space-y-4">
             <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-xs font-semibold bg-blue-50 text-blue-800 border border-blue-200">
-                Program Magang Mahasiswa 2026
+                Program Magang 2026
             </span>
             <h1 class="text-2xl md:text-4xl font-bold tracking-tight text-slate-900 leading-tight">
                 Mulai Karir Profesional Anda di <span class="text-blue-600">Portal Pendaftaran Magang</span>
